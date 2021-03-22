@@ -5,7 +5,7 @@
  * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
  * @package yii2-aws-sdk
  */
-namespace oppein\obssdk;
+namespace oppeincn\obssdk;
 use yii\base\Component;
 use Aws;
 
