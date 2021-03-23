@@ -1,71 +1,38 @@
 <?php
-/**
- * @copyright Federico Nicolás Motta
- * @author Federico Nicolás Motta <fedemotta@gmail.com>
- * @license http://opensource.org/licenses/mit-license.php The MIT License (MIT)
- * @package yii2-aws-sdk
- */
 namespace oppeincn\obssdk;
+use Obs\ObsClient;
 use yii\base\Component;
-use Aws;
 
-/**
- * Yii2 component wrapping of the AWS SDK for easy configuration
- * @author Federico Nicolás Motta <fedemotta@gmail.com>
- */
+
 class ObsSdk extends Component
 {
-    /*
-     * @var array specifies the AWS credentials
-     */
-    public $credentials = [];
-    
-    /*
-     * @var string specifies the AWS region
-     */
-    public $region = null;
-    
-    /*
-     * @var string specifies the AWS version
-     */
-    public $version = null;
 
-    public $endpoint = null;
+    public $_key = null;
+    
 
-    public $use_path_style_endpoint = true;
+    public $_secret = null;
+
+    public $_endpoint = null;
+
+
+    protected $_obssdk;
     
-    /*
-     * @var array specifies extra params
-     */
-    public $extra = [];
-    
-    /**
-     * @var AWS SDK instance
-     */
-    protected $_awssdk;
-    
-    /**
-     * Initializes (if needed) and fetches the AWS SDK instance
-     * @return Aws instance
-     */
-    public function getAwsSdk()
+
+    public function getObsSdk()
     {
-        if (empty($this->_awssdk) || !$this->_awssdk instanceof Aws\Sdk) {
-            $this->setAwsSdk();
+        if (empty($this->_obssdk) || !$this->_obssdk instanceof ObsClient) {
+            $this->setObsSdk();
         }
-        return $this->_awssdk;
+        return $this->_obssdk;
     }
-    /**
-     * Sets the AWS SDK instance
-     */
-    public function setAwsSdk()
+
+
+    public function setObsSdk()
     {
-        $this->_awssdk = new Aws\Sdk(array_merge([ 
-                                        'credentials' => $this->credentials,
-                                        'region'=>$this->region,
-                                        'version'=>$this->version,
-                                        'endpoint'=>$this->endpoint,
-                                         'use_path_style_endpoint'=>$this->use_path_style_endpoint
-                                    ],$this->extra));
+        $this->_obssdk = new ObsClient([
+            'key' => $this->_key,
+            'secret' => $this->_secret,
+            'endpoint' => $this->_endpoint
+        ]);;
     }
 }
