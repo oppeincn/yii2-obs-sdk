@@ -27,10 +27,9 @@ Usage
 
 Once the extension is installed, simply use it in your code by  :
 
-```php
        'obssdk' => [
             'class' => 'oppeincn\obssdk\ObsSdk',
             'key' => 'xxx',
             'secret' => 'xxx',
             'endpoint' => 'xxxx'
-        ], ?>```"# yii2-obs-sdk" 
+        ],
