@@ -11,11 +11,12 @@
         }
     ],
     "require": {
-        "yiisoft/yii2": "~2.0.0"
+        "yiisoft/yii2": "~2.0.0",
+        "aws/aws-sdk-php": "3.173.19"
     },
     "autoload": {
         "psr-4": {
-            "oppein\\obssdk\\": ""
+            "oppeincn\\obssdk\\": ""
         }
     }
 }
